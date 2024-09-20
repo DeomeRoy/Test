@@ -6,12 +6,12 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-    var w =50
-    var h =160
-    var bmi=w/((h/100)**2)
-
-    console.log("Halo!!!Your BMI value is "+ bmi)
-    </script>
+<label for="h">請輸入你的身高</label>
+<input type="number" id = "h">
+<label for="h">請輸入你的體重</label>
+<input type="number" id = "w">
+<button onclick = "calcBmi()">開始計算BMI</button>
+<p id = "bmi"></p>
 </body>
+<script src = "BMI.js"></script>
 </html>
