@@ -1,0 +1,10 @@
+一、安裝Git和Node
+二、打開Visual Studio Code確認Git和Node是否安裝完成
+    點終端機->新增終端->打入Git和Node
+三、左下角登入GitHub
+四、終端機打入基本連接資訊
+    git config --global user.name 
+    git config --global user.email 
+五、設定目標資料夾
+六、新增檔案(JS檔案要加.js)
+七、上傳
