@@ -1,6 +1,6 @@
 var readline = require("readline-sync");
 
-var Ans=Math.floor(Math.random()*9)+1 //0<= rand <1
+var Ans=Math.floor(Math.random()*2)+1 //0<= rand <1
 var win=false;
 
 while(!win){

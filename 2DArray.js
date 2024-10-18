@@ -14,5 +14,14 @@ for(var _row=0;_row<row;_row++){
     dynaAry2d.push([]);
     for(var _col=0;_col<col;_col++){
         dynaAry2d[_row].push(_col+_row*col);
+        
     }
 }
+
+/*var Bus=[]
+for(var i=0;i<4;i++){
+    var rand = Math.floor(Math.random()*10);
+    var temp= Bus[i];
+    Bus[i] = Bus[rand];
+    Bus[rand] = temp;
+  }*/
