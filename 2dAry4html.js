@@ -11,11 +11,11 @@ var col=ary2d[0].length;
 
 //draw map
 var canvas = document.getElementById("map").getContext("2d");
-//var size=canvas.width/row
+var size=canvas.width/row
 for(var _row=0;_row<row;_row++){
     for(var _col=0;_col<col;_col++){
         //ar2d[_row][_col]=>0,1
-        if(ary2d[_row][_col]==1){
+        if(ary2d[_col][_row]==1){
             canvas.fillStyle="#0000ff"
         }else{
             canvas.fillStyle="#000000"
