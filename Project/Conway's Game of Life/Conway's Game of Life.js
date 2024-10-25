@@ -37,6 +37,8 @@ function NextStep(){
         for(var _col=0;_col<col;_col++){
             x=0;
             y=0;
+            var canvas = document.getElementById("map").getContext("2d");
+            var size=canvas.width/row
             for(var i=-1;i<2;i++){
                 x+i==x;
                 for(var m=-1;m<2;m++){
@@ -45,7 +47,7 @@ function NextStep(){
                         return;
                     }
                     if(CG2D[_row+x,_col+y]==1){
-                        o+1;
+                        o+1==o;
                     }
                     else if(CG2D[_row+x,_col+y]==0){
                         return;
@@ -53,8 +55,13 @@ function NextStep(){
                 }
             }
             if(o<2||o>3){
-                CG2D[_row,_col]
+                canvas.fillStyle="#FFFFFF"
             }
+            else if(o==2||o==3){
+                canvas.fillStyle="#000000"
+            }
+            canvas.fillRect(_row*10,_col*10,10,10);
+            canvas.strokeRect(_row*10,_col*10,10,10);
         }
     }
 }
