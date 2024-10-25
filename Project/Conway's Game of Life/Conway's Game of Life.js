@@ -1,38 +1,60 @@
-var CG2D=[
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,1,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,1],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,1,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0,0]
-];
+var CG2D=[];
+var row=60, col=60;
+var o,x,y;
+for(var _row=0;_row<row;_row++){
+    CG2D.push([]);
+    for(var _col=0;_col<col;_col++){
+        CG2D[_row].push(Math.floor(Math.random() * 2));
+    }
+}
 var row=CG2D.length;
 var col=CG2D[0].length;
-
-var canvas = document.getElementById("map").getContext("2d");
-var size=canvas.width/row
-for(var _row=0;_row<row;_row++){
-    for(var _col=0;_col<col;_col++){
-        if(CG2D[_col][_row]==1){
-            canvas.fillStyle="#0000ff"
-        }else{
-            canvas.fillStyle="#000000"
+function Random(){
+    var CG2D=[];
+    for(var _row=0;_row<row;_row++){
+        CG2D.push([]);
+        for(var _col=0;_col<col;_col++){
+            CG2D[_row].push(Math.floor(Math.random() * 2));
         }
-        canvas.fillRect(_row*60,_col*60,60,60);
-        canvas.strokeRect(_row*60,_col*60,60,60);
+    }
+    var canvas = document.getElementById("map").getContext("2d");
+    var size=canvas.width/row
+    for(var _row=0;_row<row;_row++){
+        for(var _col=0;_col<col;_col++){
+            if(CG2D[_col][_row]==1){
+                canvas.fillStyle="#FFFFFF"
+            }else{
+                canvas.fillStyle="#000000"
+            }
+            canvas.fillRect(_row*10,_col*10,10,10);
+            canvas.strokeRect(_row*10,_col*10,10,10);
+        }
     }
 }
 
-
-
-
-
-
-
-// function calcBmi(){
-    
-// }
+function NextStep(){
+    for(var _row=0;_row<row;_row++){
+        for(var _col=0;_col<col;_col++){
+            x=0;
+            y=0;
+            for(var i=-1;i<2;i++){
+                x+i==x;
+                for(var m=-1;m<2;m++){
+                    y+m==y;
+                    if((_row+x)<0 ||(_row+x>59)||(_col+y-1)<0 ||(_col+y>59)){
+                        return;
+                    }
+                    if(CG2D[_row+x,_col+y]==1){
+                        o+1;
+                    }
+                    else if(CG2D[_row+x,_col+y]==0){
+                        return;
+                    }
+                }
+            }
+            if(o<2||o>3){
+                CG2D[_row,_col]
+            }
+        }
+    }
+}
