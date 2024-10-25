@@ -33,24 +33,25 @@ function Random(){
 }
 
 function NextStep(){
+    var canvas = document.getElementById("map").getContext("2d");
+    var size=canvas.width/row
     for(var _row=0;_row<row;_row++){
         for(var _col=0;_col<col;_col++){
             x=0;
             y=0;
-            var canvas = document.getElementById("map").getContext("2d");
-            var size=canvas.width/row
+            CG2D.push([]);
             for(var i=-1;i<2;i++){
                 x+i==x;
                 for(var m=-1;m<2;m++){
                     y+m==y;
                     if((_row+x)<0 ||(_row+x>59)||(_col+y-1)<0 ||(_col+y>59)){
-                        return;
+                        return 0;
                     }
                     if(CG2D[_row+x,_col+y]==1){
                         o+1==o;
                     }
                     else if(CG2D[_row+x,_col+y]==0){
-                        return;
+                        return 0;
                     }
                 }
             }
@@ -61,7 +62,6 @@ function NextStep(){
                 canvas.fillStyle="#000000"
             }
             canvas.fillRect(_row*10,_col*10,10,10);
-            canvas.strokeRect(_row*10,_col*10,10,10);
         }
     }
 }
