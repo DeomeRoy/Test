@@ -1,0 +1,176 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordered List with Search Function</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 300px;
+        }
+        ol {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Searchable Ordered List</h1>
+<input type="text" id="searchInput" placeholder="Search items..." onkeyup="filterList()">
+
+<ol id="itemList">
+    <li>Apple</li>
+    <li>Banana</li>
+    <li>Cherry</li>
+    <li>Date</li>
+    <li>Grape</li>
+    <li>Lemon</li>
+    <li>Mango</li>
+    <li>Orange</li>
+    <li>Pineapple</li>
+    <li>Strawberry</li>
+</ol>
+
+<script>
+    function filterList() {
+        // Get the input value
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        // Get the ordered list
+        const ol = document.getElementById('itemList');
+        // Get all list items
+        const items = ol.getElementsByTagName('li');
+
+        // Loop through the list items and toggle their visibility
+        for (let i = 0; i < items.length; i++) {
+            const itemText = items[i].textContent || items[i].innerText;
+            if (itemText.toLowerCase().indexOf(input) > -1) {
+                items[i].style.display = ""; // Show item
+            } else {
+                items[i].style.display = "none"; // Hide item
+            }
+        }
+    }
+</script>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordered List with Binary Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 300px;
+        }
+        ol {
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Searchable Ordered List</h1>
+<input type="text" id="searchInput" placeholder="搜尋" onkeyup="filterList()"></div>
+<button onclick="addItem()">Add Item</button>
+<input type="text" id="newItem" placeholder="新增新物件" />
+
+<ol id="itemList"></ol>
+
+<script>
+    class OrderedList {
+        constructor() {
+            this.items = [];
+        }
+
+        // Insert an item while maintaining order
+        insert(item) {
+            const index = this.binarySearchInsertIndex(item);
+            this.items.splice(index, 0, item); // Insert the item at the correct index
+        }
+
+        // Binary search to find the index to insert
+        binarySearchInsertIndex(item) {
+            let low = 0;
+            let high = this.items.length;
+
+            while (low < high) {
+                const mid = Math.floor((low + high) / 2);
+                if (this.items[mid] < item) {
+                    low = mid + 1;
+                } else {
+                    high = mid;
+                }
+            }
+            return low; // The proper index to insert the new item
+        }
+
+        // Return ordered list items
+        getItems() {
+            return this.items;
+        }
+    }
+
+    // Global ordered list instance
+    const orderedList = new OrderedList();
+
+    function addItem() {
+        const newItemInput = document.getElementById('newItem');
+        const newItem = newItemInput.value.trim();
+        if (newItem) {
+            orderedList.insert(newItem); // Insert the new item into the ordered list
+            newItemInput.value = ''; // Clear input field
+            updateListDisplay(); // Update the displayed list
+        }
+    }
+
+    function updateListDisplay() {
+        const ol = document.getElementById('itemList');
+        ol.innerHTML = ''; // Clear current list display
+        orderedList.getItems().forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            ol.appendChild(li); // Append new list item
+        });
+    }
+
+    function filterList() {
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const ol = document.getElementById('itemList');
+        const items = ol.getElementsByTagName('li');
+
+        // Loop through the list items and toggle their visibility
+        for (let i = 0; i < items.length; i++) {
+            const itemText = items[i].textContent || items[i].innerText;
+            if (itemText.toLowerCase().indexOf(input) > -1) {
+                items[i].style.display = ""; // Show item
+            } else {
+                items[i].style.display = "none"; // Hide item
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
