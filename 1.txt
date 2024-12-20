@@ -1,0 +1,179 @@
+下面是用 JavaScript 實現的二元搜尋樹（Binary Search Tree, BST）的完整範例，包括插入資料和搜尋功能。
+
+1. 定義樹的結構
+首先，我們需要定義一個樹節點類 TreeNode，以及一個二元搜尋樹類 BinarySearchTree：
+
+<>
+javascript
+
+
+class TreeNode {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+
+    // 插入新資料
+    insert(value) {
+        const newNode = new TreeNode(value);
+        if (this.root === null) {
+            this.root = newNode;
+            return;
+        }
+        this._insertNode(this.root, newNode);
+    }
+
+    _insertNode(node, newNode) {
+        if (newNode.value < node.value) {
+            if (node.left === null) {
+                node.left = newNode;
+            } else {
+                this._insertNode(node.left, newNode);
+            }
+        } else {
+            if (node.right === null) {
+                node.right = newNode;
+            } else {
+                this._insertNode(node.right, newNode);
+            }
+        }
+    }
+
+    // 搜尋資料
+    search(value) {
+        return this._searchNode(this.root, value);
+    }
+
+    _searchNode(node, value) {
+        if (node === null) {
+            return false; // 找不到該值
+        }
+        if (value === node.value) {
+            return true; // 找到該值
+        }
+        if (value < node.value) {
+            return this._searchNode(node.left, value); // 在左邊搜尋
+        } else {
+            return this._searchNode(node.right, value); // 在右邊搜尋
+        }
+    }
+}
+2. 使用範例
+接下來，我們可以使用這個 BinarySearchTree 類別來插入資料和進行搜尋：
+
+<>
+javascript
+
+
+// 創建一個新的二元搜尋樹
+const bst = new BinarySearchTree();
+
+// 插入資料
+bst.insert(50);
+bst.insert(30);
+bst.insert(70);
+bst.insert(20);
+bst.insert(40);
+bst.insert(60);
+bst.insert(80);
+
+// 搜尋資料
+console.log(bst.search(40)); // 輸出: true
+console.log(bst.search(90)); // 輸出: false
+console.log(bst.search(20)); // 輸出: true
+console.log(bst.search(70)); // 輸出: true
+console.log(bst.search(25)); // 輸出: false
+整體程式碼
+以下是完整的程式碼範例：
+
+<>
+javascript
+
+
+class TreeNode {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BinarySearchTree {
+    constructor() {
+        this.root = null;
+    }
+
+    // 插入新資料
+    insert(value) {
+        const newNode = new TreeNode(value);
+        if (this.root === null) {
+            this.root = newNode;
+            return;
+        }
+        this._insertNode(this.root, newNode);
+    }
+
+    _insertNode(node, newNode) {
+        if (newNode.value < node.value) {
+            if (node.left === null) {
+                node.left = newNode;
+            } else {
+                this._insertNode(node.left, newNode);
+            }
+        } else {
+            if (node.right === null) {
+                node.right = newNode;
+            } else {
+                this._insertNode(node.right, newNode);
+            }
+        }
+    }
+
+    // 搜尋資料
+    search(value) {
+        return this._searchNode(this.root, value);
+    }
+
+    _searchNode(node, value) {
+        if (node === null) {
+            return false; // 找不到該值
+        }
+        if (value === node.value) {
+            return true; // 找到該值
+        }
+        if (value < node.value) {
+            return this._searchNode(node.left, value); // 在左邊搜尋
+        } else {
+            return this._searchNode(node.right, value); // 在右邊搜尋
+        }
+    }
+}
+
+// 使用範例
+const bst = new BinarySearchTree();
+bst.insert(50);
+bst.insert(30);
+bst.insert(70);
+bst.insert(20);
+bst.insert(40);
+bst.insert(60);
+bst.insert(80);
+
+console.log(bst.search(40)); // 輸出: true
+console.log(bst.search(90)); // 輸出: false
+console.log(bst.search(20)); // 輸出: true
+console.log(bst.search(70)); // 輸出: true
+console.log(bst.search(25)); // 輸出: false
+說明
+插入（insert）功能: 這個功能會根據二元搜尋樹的特性，在適當的位置插入新節點。
+
+搜尋（search）功能: 此功能會根據樹的結構，快速地判斷一個值是否存在於樹中。它會根據當前節點的值來決定是往左子樹還是右子樹進行搜尋。
+
+這個簡單的實現可以根據需要進行擴展，例如添加刪除功能、遍歷功能等等。
