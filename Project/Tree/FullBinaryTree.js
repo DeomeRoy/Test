@@ -24,7 +24,6 @@ function createFullBinaryTree(level) {    //製造完美二元樹
         queue.length = 0;  // 清空當前隊列
         Array.prototype.push.apply(queue, nextQueue);  // 對下一層進行賦值
     }
-
     return root;
 }
 
