@@ -6,10 +6,10 @@ class TreeNode {
     }
 }
 
-function createFullBinaryTree(level) {
-    if (level < 1) return null;
+function createFullBinaryTree(level) {    //製造完美二元樹
+    if (level < 1) return null;           //如果層級小於1回傳null
 
-    const root = new TreeNode(1);  // 根節點的值可以根據需求改變
+    const root = new TreeNode(1);         // 根節點的值可以根據需求改變
     const queue = [root];
     let value = 2;
 
@@ -28,7 +28,7 @@ function createFullBinaryTree(level) {
     return root;
 }
 
-function inorderTraversal(root) {
+function inorderTraversal(root) {       //排列中序
     if (root) {
         inorderTraversal(root.left);
         console.log(root.value);
@@ -36,7 +36,7 @@ function inorderTraversal(root) {
     }
 }
 
-function preorderTraversal(root) {
+function preorderTraversal(root) {      //排列前序
     if (root) {
         console.log(root.value);
         preorderTraversal(root.left);
@@ -44,7 +44,7 @@ function preorderTraversal(root) {
     }
 }
 
-function postorderTraversal(root) {
+function postorderTraversal(root) {     //排列後序
     if (root) {
         postorderTraversal(root.left);
         postorderTraversal(root.right);
